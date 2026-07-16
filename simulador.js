@@ -17,5 +17,21 @@ function calcular() {
     let cmpspnCapacidadPago = document.getElementById("spnCapacidadPago");
     cmpspnCapacidadPago.textContent= capacidadPago;
 
+    let cmpMonto = document.getElementById("txtMonto");
+    let cmpTasa = document.getElementById("txtTasaInteres");
+    let cmpPlazoAnios = document.getElementById("txtPlazo");
+
+    let valueMonto = cmpMonto.value;
+    let valueTasa = cmpTasa.value;
+    let valuePlazoAnios = cmpPlazoAnios.value;
+
+    let valorEnteroMonto = parseInt(valueMonto);
+    let valorEnteroTasa = parseInt(valueTasa);
+    let valorEnteroPlazaAnios = parseInt(valuePlazoAnios);
+
+    let valorInteres= calcularInteresSimple(valorEnteroMonto, valorEnteroTasa, valorEnteroPlazaAnios)
+
+    let cmpvalorInteres = document.getElementById("spnInteresPagar");
+    cmpvalorInteres.textContent = valorInteres;
 
 }

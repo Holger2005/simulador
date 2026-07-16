@@ -10,3 +10,8 @@ function calcularDisponible(ingresos, egresos) {
         return calcularRedondeado;
     }
 }
+
+function calcularCapacidadPago(montoDisponible){
+    let valorDisponible = montoDisponible*0.5;
+    return valorDisponible;
+}

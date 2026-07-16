@@ -12,4 +12,10 @@ function calcular() {
 
     cmpspnDisponible.textContent = calcular;
 
+    let capacidadPago= calcularCapacidadPago(calcular);
+    
+    let cmpspnCapacidadPago = document.getElementById("spnCapacidadPago");
+    cmpspnCapacidadPago.textContent= capacidadPago;
+
+
 }

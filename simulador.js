@@ -29,6 +29,7 @@ function calcular() {
     let valorEnteroTasa = parseInt(valueTasa);
     let valorEnteroPlazaAnios = parseInt(valuePlazoAnios);
 
+
     let valorInteres= calcularInteresSimple(valorEnteroMonto, valorEnteroTasa, valorEnteroPlazaAnios)
 
     let cmpvalorInteres = document.getElementById("spnInteresPagar");
@@ -39,4 +40,9 @@ function calcular() {
     let cmpTotalPagar = document.getElementById("spnTotalPrestamo");
     cmpTotalPagar.textContent = totalPagar;
 
+    let cuotaMensual = calcularCuotaMensual(totalPagar, valorEnteroPlazaAnios)
+    let valorEnteroCuotaMensual = parseFloat(cuotaMensual.toFixed(2));
+
+    let cmpCuotaMensual = document.getElementById("spnCuotaMensual");
+    cmpCuotaMensual.textContent = valorEnteroCuotaMensual;
 }

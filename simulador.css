@@ -346,4 +346,19 @@ input::placeholder {
     .primary-metric {
         font-size: 16px;
     }
+
+    /* Estilos para las validaciones e indicaciones de error */
+    .error-msg {
+        color: #dc2626; /* Color rojo accesible */
+        font-size: 12px;
+        font-style: italic; /* Cursiva requerida */
+        margin-top: 4px;
+        display: block;
+        line-height: 1.2;
+    }
+
+    /* Opcional: Borde rojo en el input con error */
+    input.input-error {
+        border-color: #dc2626 !important;
+    }
 }

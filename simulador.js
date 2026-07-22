@@ -1,57 +1,56 @@
-//AQUI EL JAVASCRIPT PARA MANIPULAR EL HTML
-function calcular() {
-    let cmpIngreso = document.getElementById("txtIngresos");
-    let cmpEgreso = document.getElementById("txtEgresos");
+/**
+ * Función genérica para validar un input al perder el foco (onblur)
+ * @param {string} inputId - ID del input a validar
+ */
+function validarInput(inputId) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
 
-    let ingresoStr = cmpIngreso.value;
-    let egresoStr = cmpEgreso.value;
+    // Buscar si ya existe un elemento de error previo debajo del input/contenedor
+    const contenedor = input.closest('.form-group');
+    let errorSpan = contenedor.querySelector('.error-msg');
 
-    let calcular = calcularDisponible(ingresoStr, egresoStr);
+    // Si no existe, crear el elemento donde se mostrará el mensaje
+    if (!errorSpan) {
+        errorSpan = document.createElement('span');
+        errorSpan.className = 'error-msg';
+        contenedor.appendChild(errorSpan);
+    }
 
-    let cmpspnDisponible = document.getElementById("spnDisponible");
+    const valor = input.value.trim();
+    // Expresión regular para validar enteros o decimales positivos
+    const esNumeroValido = /^[0-9]+(\.[0-9]+)?$/.test(valor);
 
-    cmpspnDisponible.textContent = calcular;
-
-    let capacidadPago= calcularCapacidadPago(calcular);
-    
-    let cmpspnCapacidadPago = document.getElementById("spnCapacidadPago");
-    cmpspnCapacidadPago.textContent= capacidadPago;
-
-    let cmpMonto = document.getElementById("txtMonto");
-    let cmpTasa = document.getElementById("txtTasaInteres");
-    let cmpPlazoAnios = document.getElementById("txtPlazo");
-
-    let valueMonto = cmpMonto.value;
-    let valueTasa = cmpTasa.value;
-    let valuePlazoAnios = cmpPlazoAnios.value;
-
-    let valorEnteroMonto = parseInt(valueMonto);
-    let valorEnteroTasa = parseInt(valueTasa);
-    let valorEnteroPlazaAnios = parseInt(valuePlazoAnios);
-
-
-    let valorInteres= calcularInteresSimple(valorEnteroMonto, valorEnteroTasa, valorEnteroPlazaAnios)
-
-    let cmpvalorInteres = document.getElementById("spnInteresPagar");
-    cmpvalorInteres.textContent = valorInteres;
-
-    let totalPagar = calcularTotalPagar(valorEnteroMonto, valorInteres);
-
-    let cmpTotalPagar = document.getElementById("spnTotalPrestamo");
-    cmpTotalPagar.textContent = totalPagar;
-
-    let cuotaMensual = calcularCuotaMensual(totalPagar, valorEnteroPlazaAnios)
-    let valorEnteroCuotaMensual = parseFloat(cuotaMensual.toFixed(2));
-
-    let cmpCuotaMensual = document.getElementById("spnCuotaMensual");
-    cmpCuotaMensual.textContent = valorEnteroCuotaMensual;
-
-    let estadoCredito = aprobarCredito(capacidadPago, valorEnteroCuotaMensual);
-    let cmpEstadoCredito = document.getElementById("spnEstadoCredito");
-    
-    if(estadoCredito == true){
-        cmpEstadoCredito.textContent ="CREDITO APROBADO";
-    }else{
-        cmpEstadoCredito.textContent ="CREDITO RECHAZADO";
+    // Validaciones
+    if (valor === "") {
+        errorSpan.textContent = "Este campo no puede estar vacío.";
+        input.classList.add('input-error');
+    } else if (!esNumeroValido) {
+        errorSpan.textContent = "Ingrese solo números válidos (ej. 1000 o 12.5).";
+        input.classList.add('input-error');
+    } else {
+        // Si no hay error, limpiar mensaje y estilos
+        errorSpan.textContent = "";
+        input.classList.remove('input-error');
     }
 }
+
+// Asignar eventos 'onblur' usando los mismos IDs existentes
+document.addEventListener("DOMContentLoaded", function () {
+    const idsAValidar = [
+        "txtIngresos",
+        "txtEgresos",
+        "txtMonto",
+        "txtPlazo",
+        "txtTasaInteres"
+    ];
+
+    idsAValidar.forEach(function (id) {
+        const elemento = document.getElementById(id);
+        if (elemento) {
+            elemento.onblur = function () {
+                validarInput(id);
+            };
+        }
+    });
+});

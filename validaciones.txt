@@ -1,0 +1,20 @@
+prompt 1
+Quiero validar inputs en JavaScript.
+
+Reglas:
+1. Mostrar mensaje debajo de cada input (no usar alert).
+2. El mensaje debe ser en color rojo y en cursiva.
+Validaciones:
+1. Solo numeros
+2. No puede estar vacío
+Condiciones técnicas:
+1. Usar los mismo IDs existentes
+2. Usar eventos onblur para validar cuando el usuario sale del input
+3. No modificar IDs existentes
+4. Mostrar errores en un elemento debajo del input
+
+Diseño:
+1. Debe ser responsive
+2. Estetico
+3. Legible
+

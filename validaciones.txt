@@ -18,3 +18,8 @@ Diseño:
 2. Estetico
 3. Legible
 
+prompt 2
+
+El mensaje que muestra el error debe ser en color rojo, en cursiva y un tamaño de letra de 13px.
+
+

@@ -314,6 +314,22 @@ input::placeholder {
     color: var(--text-primary);
     border-color: #9ca3af;
 }
+    
+/* Regla específica para el mensaje de error */
+.form-group .error-msg {
+    color: #dc2626;      /* Rojo accesible */
+    font-size: 13px;     /* Tamaño exacto de 13px */
+    font-style: italic;  /* Cursiva */
+    margin-top: 6px;
+    display: block;
+    line-height: 1.2;
+    }
+
+/* Estado visual para el input con error */
+.form-group input.input-error {
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+}
 
 /* Adaptabilidad Responsiva (Móviles) */
 @media (max-width: 520px) {
@@ -345,20 +361,5 @@ input::placeholder {
 
     .primary-metric {
         font-size: 16px;
-    }
-
-    /* Estilos para las validaciones e indicaciones de error */
-    .error-msg {
-        color: #dc2626; /* Color rojo accesible */
-        font-size: 12px;
-        font-style: italic; /* Cursiva requerida */
-        margin-top: 4px;
-        display: block;
-        line-height: 1.2;
-    }
-
-    /* Opcional: Borde rojo en el input con error */
-    input.input-error {
-        border-color: #dc2626 !important;
     }
 }

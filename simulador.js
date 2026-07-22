@@ -1,16 +1,19 @@
 /**
- * Función genérica para validar un input al perder el foco (onblur)
- * @param {string} inputId - ID del input a validar
+ * Valida que el input no esté vacío y contenga solo números.
+ * Inyecta un nodo span con la clase 'error-msg' dejando el diseño al CSS.
+ * @param {string} inputId - ID existente del input
  */
 function validarInput(inputId) {
     const input = document.getElementById(inputId);
     if (!input) return;
 
-    // Buscar si ya existe un elemento de error previo debajo del input/contenedor
     const contenedor = input.closest('.form-group');
+    if (!contenedor) return;
+
+    // Buscar si ya existe el elemento span de error
     let errorSpan = contenedor.querySelector('.error-msg');
 
-    // Si no existe, crear el elemento donde se mostrará el mensaje
+    // Si no existe, lo creamos asignándole únicamente la clase CSS
     if (!errorSpan) {
         errorSpan = document.createElement('span');
         errorSpan.className = 'error-msg';
@@ -18,24 +21,23 @@ function validarInput(inputId) {
     }
 
     const valor = input.value.trim();
-    // Expresión regular para validar enteros o decimales positivos
+    // Expresión regular que valida enteros o decimales positivos
     const esNumeroValido = /^[0-9]+(\.[0-9]+)?$/.test(valor);
 
-    // Validaciones
+    // Lógica de evaluación
     if (valor === "") {
         errorSpan.textContent = "Este campo no puede estar vacío.";
         input.classList.add('input-error');
     } else if (!esNumeroValido) {
-        errorSpan.textContent = "Ingrese solo números válidos (ej. 1000 o 12.5).";
+        errorSpan.textContent = "Ingrese solo números (ej. 1000 o 12.5).";
         input.classList.add('input-error');
     } else {
-        // Si no hay error, limpiar mensaje y estilos
         errorSpan.textContent = "";
         input.classList.remove('input-error');
     }
 }
 
-// Asignar eventos 'onblur' usando los mismos IDs existentes
+// Asignación de eventos 'onblur' a los IDs existentes en el HTML
 document.addEventListener("DOMContentLoaded", function () {
     const idsAValidar = [
         "txtIngresos",

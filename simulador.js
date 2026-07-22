@@ -45,4 +45,13 @@ function calcular() {
 
     let cmpCuotaMensual = document.getElementById("spnCuotaMensual");
     cmpCuotaMensual.textContent = valorEnteroCuotaMensual;
+
+    let estadoCredito = aprobarCredito(capacidadPago, valorEnteroCuotaMensual);
+    let cmpEstadoCredito = document.getElementById("spnEstadoCredito");
+    
+    if(estadoCredito == true){
+        cmpEstadoCredito.textContent ="CREDITO APROBADO";
+    }else{
+        cmpEstadoCredito.textContent ="CREDITO RECHAZADO";
+    }
 }

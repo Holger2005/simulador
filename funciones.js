@@ -32,3 +32,26 @@ function calcularCuotaMensual (total, plazoAnios){
     let cuotaMensual = total/meses;
     return cuotaMensual;
 }
+
+function aprobarCredito (capacidadPago, cuotaMensual){
+    if (capacidadPago > cuotaMensual){
+        return (true)
+    } else {
+        return (false)
+    } 
+}
+
+function reiniciar (){
+    document.getElementById("txtIngresos").value = "";
+    document.getElementById("txtEgresos").value = "";
+    document.getElementById("txtMonto").value = "";
+    document.getElementById("txtPlazo").value = "";
+    document.getElementById("txtTasaInteres").value = "";
+
+    document.getElementById("spnDisponible").textContent = "";
+    document.getElementById("spnCapacidadPago").textContent = "";
+    document.getElementById("spnInteresPagar").textContent = "";
+    document.getElementById("spnTotalPrestamo").textContent = "";
+    document.getElementById("spnCuotaMensual").textContent = "";
+    document.getElementById("spnEstadoCredito").textContent = "ANALIZANDO...";     
+}

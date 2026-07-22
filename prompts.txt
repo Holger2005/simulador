@@ -1,0 +1,3 @@
+prompt 1
+Actúa como un diseñador visual, dale un aspecto empresarial con los colores del logo de la imagen e inserta el logo (el logo esta en la misma carpeta del html y css, el logo se llama imagen.png).
+No cambies los ids de los componentes y mantén separados el css y el html.

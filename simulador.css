@@ -1,80 +1,349 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f8;
+/* ==========================================================================
+   Estilos del Simulador de Crédito Empresarial
+   ========================================================================== */
+
+/* Variables de Color e Identidad */
+:root {
+    /* Paleta Escala de Grises y Tonos Ejecutivos */
+    --bg-main: #f0f2f5;
+    --card-bg: #ffffff;
+    --panel-bg: #f8fafc;
+    --panel-border: #e2e8f0;
+    
+    /* Tipografía en Escala de Negros/Grises por Importancia */
+    --text-primary: #111827;     /* Titulares principales e importancia máxima */
+    --text-secondary: #374151;   /* Etiquetas de formularios y subencabezados */
+    --text-muted: #6b7280;       /* Textos informativos y valores secundarios */
+    --text-light: #9ca3af;       /* Placeholders e indicativos */
+    
+    /* Colores de Acento Empresarial */
+    --brand-primary: #1e3a8a;    /* Azul corporativo para acciones principales */
+    --brand-primary-hover: #1e40af;
+    --brand-accent: #059669;     /* Verde financiero para tarjetas y destacados */
+    
+    /* Bordes y Sombras */
+    --border-color: #d1d5db;
+    --focus-ring: rgba(30, 58, 138, 0.25);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    
+    --transition-fast: all 0.2s ease-in-out;
+}
+
+/* Reset y Base */
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.5;
+    padding: 20px 15px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Envoltorio Principal Responsivo */
+.wrapper {
+    width: 100%;
+    max-width: 580px;
+    margin: 0 auto;
+}
+
 .container {
-    width: 400px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    padding: 32px 28px;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+/* Encabezado Corporativo */
+.brand-header {
+    text-align: center;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--panel-border);
 }
 
 .logo {
+    max-width: 140px;
+    height: auto;
+    max-height: 65px;
+    object-fit: contain;
+    margin: 0 auto 14px auto;
     display: block;
-    margin: 0 auto 20px;
-    width: 100px;
 }
 
 h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #2c3e50; /* Color gris oscuro */
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* Bloques/Secciones (Cuadros con Fondos) */
+.card-section {
+    background-color: #ffffff;
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+}
+
+.section-header {
+    margin-bottom: 16px;
+    border-left: 4px solid var(--brand-accent);
+    padding-left: 10px;
 }
 
 h2 {
-    margin-top: 20px;
-    font-size: 18px;
-    color: #27ae60; /* Color verde */
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Grilla Responsiva de Formularios */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: span 2;
 }
 
 label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
-    color: #34495e; /* Color gris */
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.currency-symbol {
+    position: absolute;
+    left: 12px;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 14px;
+    pointer-events: none;
+}
+
+.input-wrapper input {
+    padding-left: 26px;
 }
 
 input {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+    padding: 10px 12px;
+    font-size: 14px;
+    color: var(--text-primary);
+    background-color: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    transition: var(--transition-fast);
 }
 
-p {
-    margin-top: 10px;
-    color: #7f8c8d; /* Color gris claro */
+input:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
-span {
-    font-weight: bold;
-    color: #2c3e50; /* Color gris oscuro */
+input::placeholder {
+    color: var(--text-light);
 }
 
-.buttons {
-    margin-top: 20px;
+/* Paneles de Resultados */
+.results-panel {
+    background-color: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: 6px;
+    padding: 14px 16px;
+}
+
+.summary-panel {
+    border-left: 3px solid var(--border-color);
+}
+
+.detailed-panel {
+    background-color: #f1f5f9;
+}
+
+.result-row {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    font-size: 13.5px;
+    border-bottom: 1px dashed var(--panel-border);
 }
 
-button {
-    width: 48%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #3498db; /* Color azul */
-    color: white;
-    font-weight: bold;
+.result-row:last-child {
+    border-bottom: none;
+}
+
+.label-text {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.value-text {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.value-text.highlight {
+    color: var(--brand-accent);
+}
+
+.main-metric {
+    margin-top: 6px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+    border-bottom: none;
+}
+
+.main-metric .label-text {
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.primary-metric {
+    font-size: 18px;
+    color: var(--brand-primary);
+}
+
+/* Badge de Estado */
+.status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+}
+
+.status-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 20px;
+    background-color: #e2e8f0;
+    color: #475569;
+    text-align: center;
+}
+
+/* Botones */
+.buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.btn {
+    flex: 1;
+    padding: 12px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 6px;
     cursor: pointer;
+    transition: var(--transition-fast);
+    text-align: center;
+    border: 1px solid transparent;
 }
 
-button:hover {
-    background-color: #2980b9; /* Color azul oscuro */
+.btn-primary {
+    background-color: var(--brand-primary);
+    color: #ffffff;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+    background-color: var(--brand-primary-hover);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background-color: #ffffff;
+    color: var(--text-secondary);
+    border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: #f8fafc;
+    color: var(--text-primary);
+    border-color: #9ca3af;
+}
+
+/* Adaptabilidad Responsiva (Móviles) */
+@media (max-width: 520px) {
+    .container {
+        padding: 20px 16px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .form-group.full-width {
+        grid-column: span 1;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .result-row {
+        flex-direction: row;
+        font-size: 13px;
+    }
+
+    .primary-metric {
+        font-size: 16px;
+    }
 }

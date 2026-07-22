@@ -1,3 +1,7 @@
 prompt 1
 Actúa como un diseñador visual, dale un aspecto empresarial con los colores del logo de la imagen e inserta el logo (el logo esta en la misma carpeta del html y css, el logo se llama imagen.png).
 No cambies los ids de los componentes y mantén separados el css y el html.
+
+prompt 2
+Los colores deben ser como el de la imagen  y tambien con escalas grises, las letras deben ser entre negro y gris dependiendo de su importancia, pon color en los cuadros o fondos, no olvides que tiene que tener un aspecto empresarial.
+Tiene que ser responsivo para cualquier dispositivo. 
